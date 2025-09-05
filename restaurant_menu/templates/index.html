@@ -8,14 +8,14 @@
     <h1>Restaurant Menu</h1>
         {% for meal in meals %}
             <h2>{{ meal.1 }}</h2>
-                {% for m in object_list %}
-                {% if m.categories == meal.0 %}
-                    {% if m.status == 0  %}
-                        <h3><del>{{ m.meal }}</del></h3>
-                        <p>{{ m.description }}</p>
+                {% for row in object_list %}
+                {% if row.categories == meal.0 %}
+                    {% if row.status == 0  %}
+                        <a href="{% url 'menu_item' row.pk %}"><h3><del>{{ row.meal }}</del></h3></a>
+                        <p>{{ row.description }}</p>
                     {% else %}
-                        <h3>{{ m.meal }}</h3>
-                        <p>{{ m.description }}</p>
+                        <a href="{% url 'menu_item' row.pk %}"><h3>{{ row.meal }}</h3></a>
+                        <p>{{ row.description }}</p>
                     {% endif %}
                 {% endif %}
                 {% endfor %}
